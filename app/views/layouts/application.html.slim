@@ -1,15 +1,54 @@
 doctype html
 html
   head
-    title
-      | Ajisai
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+
+    title 紫陽花
+    / ファビコンの指定
+    / https://ao-system.net/favicongenerator/
+    = favicon_link_tag 'favicon.ico'
+    = favicon_link_tag 'apple-touch-icon-180x180.png',
+                        rel:   'apple-touch-icon',
+                        sizes: '180x180',
+                        type:  'image/png'
+
+    / 検索エンジン用にサイトの紹介文章
+    meta name="description" content="紫陽花は、梅雨の季節を彩る艶やかな花です。"
+
+    / cross-site request forgeries
     = csrf_meta_tags
+    / Content Security Policy
     = csp_meta_tag
+
+    / sprocket管理下のcssを読み込む
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    / fontawesome
+    link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    / webpack管理下のjsを読み込む
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-
+    / sprocket管理下のjsを読み込む
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-  body
-    = semantic_flash
+    / IE Buster
+    script src="https://cdn.jsdelivr.net/npm/ie-buster@1.1.0/dist/ie-buster.min.js"
 
-    = yield
+  body
+    / header menu
+    == render 'layouts/header'
+
+    main.ui.main.container
+      = semantic_flash
+      / - if flash.present?
+      /   - flash.each do |key, value|
+      /     .ui.message class="#{key}"
+      /       / i.close.icon
+      /       .header
+      /         = "#{value}"
+
+      = yield
+
+    / footer menu
+    == render 'layouts/footer'
+
+    / debug情報の表示
+    = debug(params) if Rails.env.development?

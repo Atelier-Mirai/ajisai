@@ -88,7 +88,7 @@ GEM
     debug_inspector (0.0.3)
     erubi (1.9.0)
     execjs (2.7.0)
-    ffi (1.13.0)
+    ffi (1.13.1)
     fomantic-ui-sass (2.8.3)
       autoprefixer-rails
       rails (>= 3.2.0)
@@ -180,7 +180,7 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    regexp_parser (1.7.0)
+    regexp_parser (1.7.1)
     ruby-progressbar (1.10.1)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
