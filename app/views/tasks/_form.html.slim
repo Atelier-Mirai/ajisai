@@ -1,0 +1,8 @@
+= form_with model: task, class: 'ui form', local: true do |f|
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description, rows: 5
+  = f.submit nil, class: 'ui primary button'

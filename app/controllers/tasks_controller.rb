@@ -14,10 +14,24 @@ class TasksController < ApplicationController
   def create
     task = Task.new(task_params)
     task.save!
-    redirect_to root_url, notice: "タスク #{task.name} を登録しました。"
+    redirect_to tasks_url, success: "タスク #{task.name} を登録しました。"
   end
 
   def edit
+    @task = Task.find(params[:id])
+  end
+
+  def update
+    task = Task.find(params[:id])
+    task.update!(task_params)
+    redirect_to tasks_url, info: "タスク #{task.name} を更新しました。"
+  end
+
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+    # redirect_to tasks_url, error: "タスク #{task.name} を削除しました。"
+    redirect_to tasks_url, warning: "タスク #{task.name} を削除しました。"
   end
 
   private

@@ -1,2 +1,6 @@
-h1 Tasks#edit
-p Find me in app/views/tasks/edit.html.slim
+h1 タスク編集
+= link_to '一覧', tasks_path, class: 'ui right floated primary button'
+
+= render partial: 'form', locals: { task: @task }
+
+= link_to '削除する', task_path(@task), method: :delete, class: 'ui negative button', data: { confirm: '削除しても良いですか?' }

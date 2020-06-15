@@ -19,3 +19,5 @@ table.ui.celled.table
     tr
       th = Task.human_attribute_name(:updated_at)
       td = l @task.updated_at, format: :short
+
+= link_to '編集', edit_task_path(@task), class: 'ui yellow button'

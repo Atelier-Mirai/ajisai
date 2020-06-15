@@ -1,12 +1,4 @@
 h1 タスクの新規作成
-
 = link_to '一覧', tasks_path, class: 'ui right floated primary button'
 
-= form_with model: @task, class: 'ui form', local: true do |f|
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description, rows: 5
-  = f.submit '登録', class: 'ui primary button'
+= render partial: 'form', locals: { task: @task }
