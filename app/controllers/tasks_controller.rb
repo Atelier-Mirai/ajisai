@@ -1,18 +1,19 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.recent
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to tasks_url, success: "タスク #{@task.name} を登録しました。"
     else
@@ -21,23 +22,24 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def update
-    task = Task.find(params[:id])
-    task.update!(task_params)
-    redirect_to tasks_url, info: "タスク #{task.name} を更新しました。"
+    @task.update!(task_params)
+    redirect_to tasks_url, info: "タスク #{@task.name} を更新しました。"
   end
 
   def destroy
-    task = Task.find(params[:id])
-    task.destroy
+    @task.destroy
     # redirect_to tasks_url, error: "タスク #{task.name} を削除しました。"
-    redirect_to tasks_url, warning: "タスク #{task.name} を削除しました。"
+    redirect_to tasks_url, warning: "タスク #{@task.name} を削除しました。"
   end
 
   private
+
+  def set_task
+    @task = current_user.tasks.find(params[:id])
+  end
 
   def task_params
     params.require(:task).permit(:name, :description)

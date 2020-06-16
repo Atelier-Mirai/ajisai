@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'slim-rails'
 # フロントエンドフレームワークとして、Fomantic-UI を利用する
 gem 'fomantic-ui-sass'
+# 文字列に含まれるURLを自動的にリンク化する
+gem 'rails_autolink'
 
 group :development, :test do
   gem 'better_errors'       # エラー画面を見やすく
