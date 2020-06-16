@@ -1,0 +1,15 @@
+h1 ログイン
+
+/ - if .errors.present?
+/   ul#error_explanation
+/     - .errors.full_messages.each do |message|
+/         li = message
+
+= form_with scope: :session, class: 'ui form', local: true do |f|
+  .field
+    = f.label :email, '電子メール'
+    = f.text_field :email
+  .field
+    = f.label :password, 'パスワード'
+    = f.password_field :password
+  = f.submit 'ログイン', class: 'ui primary button'

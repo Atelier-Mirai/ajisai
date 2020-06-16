@@ -1,7 +1,7 @@
 # http://attonblog.blogspot.jp/2015/04/pry-rails-multibyte-char.html
-Pry.history.instance_eval do
-  @saver = ->(line) { save_to_file (line.force_encoding(STDIN.external_encoding))}
-end
+# Pry.history.instance_eval do
+#   @saver = ->(line) { save_to_file (line.force_encoding(STDIN.external_encoding))}
+# end
 
 begin
   require 'hirb'
@@ -11,20 +11,20 @@ end
 
 if defined? Hirb
   # Slightly dirty hack to fully support in-session Hirb.disable/enable toggleing
-  # Hirb::View.instance_eval do
-  #   def enable_output_method
-  #     @output_method = true
-  #     @old_print = Pry.config.print
-  #     Pry.config.print = proc do |*args|
-  #       Hirb::View.view_or_page_output(args[1]) || @old_print.call(*args)
-  #     end
-  #   end
-  #
-  #   def disable_output_method
-  #     Pry.config.print = @old_print
-  #     @output_method = nil
-  #   end
-  # end
+  Hirb::View.instance_eval do
+    def enable_output_method
+      @output_method = true
+      @old_print = Pry.config.print
+      Pry.config.print = proc do |*args|
+        Hirb::View.view_or_page_output(args[1]) || @old_print.call(*args)
+      end
+    end
+
+    def disable_output_method
+      Pry.config.print = @old_print
+      @output_method = nil
+    end
+  end
 
   Hirb.enable
 end

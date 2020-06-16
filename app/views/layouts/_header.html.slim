@@ -20,3 +20,14 @@
             a.item href="#"  Link Item
             a.item href="#"  Link Item
         a.item href="#"  Link Item
+    .right.menu
+      - if current_user
+        .item
+          = link_to 'タスク一覧', tasks_path, class: 'ui primary button'
+          | &nbsp;
+          = link_to '利用者一覧', admin_users_path, class: 'ui primary button'
+          | &nbsp;
+          = link_to 'ログアウト', logout_path, method: :delete, class: 'ui primary button'
+      - else
+        .item
+          = link_to 'ログイン', login_path, class: 'ui primary button'
