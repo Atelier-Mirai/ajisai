@@ -1,4 +1,18 @@
 h1 タスク一覧
+
+/ form.ui.form
+/   <input type="search" value="花子">
+/
+/
+= search_form_for @q, class: 'ui form' do |f|
+  .field
+    = f.label :name_cont, '名称'
+    = f.search_field :name_cont, value: params.dig(:q, :name_cont)
+  .field
+    = f.label :created_at_gteq, '登録日時'
+    = f.search_field :created_at_gteq, value: params.dig(:q, :created_at_gteq)
+  = f.submit nil, class: 'ui primary basic button'
+
 = link_to '新規登録', new_task_path, class: 'ui right floated primary button'
 br
 br

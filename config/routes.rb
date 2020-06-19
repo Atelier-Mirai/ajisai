@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'tasks#index'
   resources :tasks do
-    post :confirm, action: :confirm_new, on: :new
+    # post :confirm, action: :confirm_new, on: :new
   end
   resources :articles
 

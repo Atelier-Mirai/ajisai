@@ -1,18 +1,18 @@
 h1 タスクの新規作成
 = link_to '一覧', tasks_path, class: 'ui right floated primary button'
 
-/ = render partial: 'form', locals: { task: @task }
+= render partial: 'form', locals: { task: @task }
 
-- if @task.errors.present?
-  ul#error_explanation
-    - @task.errors.full_messages.each do |message|
-        li = message
-
-= form_with model: @task, class: 'ui form', local: true, url: confirm_new_task_path do |f|
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description, rows: 5
-  = f.submit '確認', class: 'ui primary button'
+/ - if @task.errors.present?
+/   ul#error_explanation
+/     - @task.errors.full_messages.each do |message|
+/         li = message
+/
+/ = form_with model: @task, class: 'ui form', local: true, url: confirm_new_task_path do |f|
+/   .field
+/     = f.label :name
+/     = f.text_field :name
+/   .field
+/     = f.label :description
+/     = f.text_area :description, rows: 5
+/   = f.submit '確認', class: 'ui primary button'

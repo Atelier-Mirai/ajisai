@@ -40,6 +40,7 @@ group :development, :test do
   gem 'pry-rails'           # rails consoleでirbの代わりにpryを使う
   gem 'pry-byebug'          # デバッグを実施
   gem 'hirb'                # console上のモデル出力を整形
+  gem 'hirb-unicode'        # console上のモデル出力を整形
 end
 
 group :development do
@@ -70,3 +71,6 @@ end
 
 # warning 抑制のために
 gem 'warning'
+
+# 検索機能
+gem 'ransack'
