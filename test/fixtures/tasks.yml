@@ -1,9 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  description: MyText
+taro_task:
+  name: 太郎のタスク
+  description:
+  user: taro
 
-two:
-  name: MyString
-  description: MyText
+jiro_task:
+  name: 次郎のタスク
+  description:
+  user: jiro

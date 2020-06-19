@@ -60,11 +60,12 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'rspec-rails'
-  gem 'spring-commands-rspec'
-  gem 'factory_bot_rails'
+  # gem 'rspec-rails'
+  # gem 'spring-commands-rspec'
+  # gem 'factory_bot_rails'
   # テスト結果を見やすく表示
-  # gem 'minitest-reporters'
+  gem 'minitest'
+  gem 'minitest-reporters'
 end
 
 # warning 抑制のために

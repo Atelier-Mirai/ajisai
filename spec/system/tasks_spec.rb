@@ -73,4 +73,48 @@ RSpec.describe 'タスク管理機能', type: :system do
       end
     end
   end
+
+  describe '編集機能' do
+    before do
+      login_as user_a
+      visit tasks_path
+      click_link '編集', match: :first
+    end
+
+    context '編集を押すと編集できる' do
+
+      it '編集画面に遷移している' do
+        expect(page).to have_content 'タスク編集'
+      end
+
+      it '内容を編集できている' do
+        fill_in '名称', with: '更新したタスク'
+        click_button '更新する'
+        expect(page).to have_selector '.ui.info.message', text: '更新したタスク'
+      end
+
+      it 'タスク名称を空白にして更新できない' do
+        fill_in '名称', with: ''
+        click_button '更新する'
+        within '#error_explanation' do
+          expect(page).to  have_content '名称を入力してください'
+        end
+      end
+    end
+  end
+
+  describe '削除機能' do
+    before do
+      login_as user_a
+      visit tasks_path
+    end
+
+    it '削除できる' do
+      click_link '削除', match: :first
+      expect {
+        page.accept_confirm '削除しても良いですか?'
+        expect(page).to have_selector '.ui.warning.message', text: '削除しました'
+      }.to change { Task.count }.by(-1)
+    end
+  end
 end
