@@ -1,8 +1,3 @@
-# http://attonblog.blogspot.jp/2015/04/pry-rails-multibyte-char.html
-# Pry.history.instance_eval do
-#   @saver = ->(line) { save_to_file (line.force_encoding(STDIN.external_encoding))}
-# end
-
 begin
   require 'hirb'
 rescue LoadError
