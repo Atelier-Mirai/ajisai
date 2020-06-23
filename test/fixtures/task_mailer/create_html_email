@@ -1,0 +1,15 @@
+<!DOCTYPEhtml>
+<html>
+  <head>
+    <metacontent="text/html;charset=utf-8"http-equiv="Content-Type"/>
+    <style>/*Emailstylesneedtobeinline*/</style>
+  </head>
+  <body>以下のタスクを作成しました
+    <ul>
+      <li>名称:新しいタスク</li>
+      <li>詳しい説明:
+      <p>詳しい説明です</p>
+      </li>
+    </ul>
+  </body>
+</html>

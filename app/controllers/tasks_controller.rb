@@ -7,7 +7,7 @@ class TasksController < ApplicationController
 
     # ransackによる検索
     # 名称欄でのAND検索 太郎 花子 ができる
-    if params[:q][:name_cont_all]
+    if params.dig(:q, :name_cont_all)
       params[:q][:name_cont_all] = params[:q][:name_cont_all].split(' ')
     end
     @q = current_user.tasks.ransack(params[:q])
@@ -30,6 +30,7 @@ class TasksController < ApplicationController
     # end
     #
     if @task.save
+      TaskMailer.create_email(@task).deliver_now
       redirect_to tasks_url, success: "タスク #{@task.name} を登録しました。"
     else
       render :new
