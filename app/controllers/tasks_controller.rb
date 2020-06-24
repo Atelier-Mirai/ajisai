@@ -28,7 +28,7 @@ class TasksController < ApplicationController
     #   render :new
     #   return
     # end
-    #
+
     if @task.save
       TaskMailer.create_email(@task).deliver_now
       redirect_to tasks_url, success: "タスク #{@task.name} を登録しました。"
@@ -41,8 +41,14 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params)
-      redirect_to tasks_url, info: "タスク #{@task.name} を更新しました。"
+    if current_user.tasks.new(task_params).valid?
+      # 単純にupdateすると、以前あった画像が上書きされるので、
+      # 検証が通るなら、画像の追加と削除を行う。
+      attach_images
+      purge_images
+      @task.update(task_params)
+
+      redirect_to task_url(@task), info: "タスク #{@task.name} を更新しました。"
     else
       render :edit
     end
@@ -50,7 +56,6 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    # redirect_to tasks_url, error: "タスク #{task.name} を削除しました。"
     redirect_to tasks_url, warning: "タスク #{@task.name} を削除しました。"
   end
 
@@ -66,6 +71,20 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :description, :image)
+    # params.require(:task).permit(:name, :description, :image)
+    params.require(:task).permit(:name, :description, images: [])
+  end
+
+  def attach_images
+    params.dig(:task, :images)&.each do |image|
+      @task.images.attach image
+    end
+    params.dig(:task).delete :images
+  end
+
+  def purge_images
+    params.dig(:task, :image_ids)&.each do |image_id|
+      @task.images.find(image_id).purge
+    end
   end
 end

@@ -74,3 +74,6 @@ gem 'warning'
 
 # 検索機能
 gem 'ransack'
+
+# Amazon S3 サービスを利用する
+gem "aws-sdk-s3", require: false

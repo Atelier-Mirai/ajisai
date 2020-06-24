@@ -11,6 +11,13 @@
     = f.label :description
     = f.text_area :description, rows: 5
   .field
-    = f.label :image
-    = f.file_field :image
+    / = f.label :image
+    / = f.file_field :image
+    = f.label :images
+    = f.file_field :images, multiple: true
+  .field
+    - if task.images.attached?
+      - task.images.each do |image|
+        = f.check_box :image_ids, { multiple: true }, image.id, false
+        = image_tag image, width: '200px'
   = f.submit nil, class: 'ui primary button'

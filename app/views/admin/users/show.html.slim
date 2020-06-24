@@ -10,7 +10,9 @@ table.ui.celled.table
       td = @user.id
     tr
       th = User.human_attribute_name(:name)
-      td = @user.name
+      td
+        = image_tag @user.avatar if @user.avatar.attached?
+        = @user.name
     tr
       th = User.human_attribute_name(:email)
       td = @user.email

@@ -1,6 +1,7 @@
 class Task < ApplicationRecord
-  has_one_attached :image
-  
+  # has_one_attached :image
+  has_many_attached :images
+
   # before_validation :set_nameless_name
   validates :name, presence: true
   validates :name, length: { maximum: 30 }
