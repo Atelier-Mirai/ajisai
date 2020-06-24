@@ -14,7 +14,7 @@
     / = f.label :image
     / = f.file_field :image
     = f.label :images
-    = f.file_field :images, multiple: true
+    = f.file_field :images, multiple: true, direct_upload: true
   .field
     - if task.images.attached?
       - task.images.each do |image|

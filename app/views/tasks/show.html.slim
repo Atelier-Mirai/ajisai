@@ -20,7 +20,8 @@ table.ui.celled.table
       td
         - if @task.images.attached?
           - @task.images.each do |image|
-            = image_tag image, width: '200px'
+            / = image_tag image, width: '200px'
+            = image_tag image.variant(resize: '200x200')
     tr
       th = Task.human_attribute_name(:created_at)
       td = l @task.created_at, format: :short
