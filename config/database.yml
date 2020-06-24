@@ -80,6 +80,8 @@ test:
 #
 production:
   <<: *default
-  database: ajisai_production
-  username: ajisai
-  password: <%= ENV['AJISAI_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DATABASE'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  port: 5432
+  host: <%= ENV['HOST'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
